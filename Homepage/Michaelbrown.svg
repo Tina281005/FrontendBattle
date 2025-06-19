@@ -1,0 +1,46 @@
+<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definition - Moved to the beginning -->
+  <defs>
+    <linearGradient id="michaelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7b68ee;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#1a0d30;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="75" cy="75" r="75" fill="url(#michaelGradient)"/>
+
+  <!-- Face -->
+  <circle cx="75" cy="65" r="30" fill="#fdbcb4"/>
+
+  <!-- Hair (Short) -->
+  <path d="M50 50 Q75 40 100 50 Q100 40 75 35 Q50 40 50 50" fill="#654321"/>
+
+  <!-- Glasses -->
+  <circle cx="68" cy="60" r="8" fill="none" stroke="#333" stroke-width="2"/>
+  <circle cx="82" cy="60" r="8" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="76" y1="60" x2="74" y2="60" stroke="#333" stroke-width="2"/>
+
+  <!-- Eyes behind glasses -->
+  <circle cx="68" cy="60" r="2" fill="#333"/>
+  <circle cx="82" cy="60" r="2" fill="#333"/>
+
+  <!-- Nose -->
+  <ellipse cx="75" cy="68" rx="1" ry="2" fill="#f4a688"/>
+
+  <!-- Mouth -->
+  <path d="M70 75 Q75 78 80 75" stroke="#333" stroke-width="1" fill="none"/>
+
+  <!-- Beard -->
+  <path d="M65 78 Q75 85 85 78 Q85 82 75 85 Q65 82 65 78" fill="#654321"/>
+
+  <!-- Shirt -->
+  <rect x="55" y="95" width="40" height="55" rx="5" fill="#7b68ee"/>
+
+  <!-- Code symbols on shirt -->
+  <text x="75" y="115" text-anchor="middle" fill="#fff" font-family="monospace" font-size="12">&lt;/&gt;</text>
+
+  <!-- Arms -->
+  <ellipse cx="45" cy="115" rx="8" ry="25" fill="#fdbcb4"/>
+  <ellipse cx="105" cy="115" rx="8" ry="25" fill="#fdbcb4"/>
+</svg>

@@ -1,0 +1,58 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="webGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4ecdc4;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="#0a0a0a"/>
+
+  <!-- Browser Window -->
+  <rect x="50" y="50" width="500" height="300" rx="10" fill="url(#webGradient)" opacity="0.1"/>
+  <rect x="60" y="80" width="480" height="250" rx="5" fill="#1a1a1a" stroke="url(#webGradient)" stroke-width="2"/>
+
+  <!-- Browser Header -->
+  <rect x="60" y="80" width="480" height="40" rx="5" fill="#2a2a2a"/>
+  <circle cx="85" cy="100" r="6" fill="#ff6b6b"/>
+  <circle cx="105" cy="100" r="6" fill="#ffeb3b"/>
+  <circle cx="125" cy="100" r="6" fill="#4caf50"/>
+
+  <!-- Code Elements -->
+  <rect x="80" y="140" width="120" height="15" rx="3" fill="#ff6b6b" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="220" y="140" width="80" height="15" rx="3" fill="#4ecdc4" opacity="0.6"/>
+  <rect x="80" y="170" width="200" height="15" rx="3" fill="#7b68ee" opacity="0.7"/>
+  <rect x="300" y="170" width="60" height="15" rx="3" fill="#00ffff" opacity="0.8"/>
+
+  <!-- Responsive Elements -->
+  <rect x="400" y="140" width="120" height="80" rx="5" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.8"/>
+  <rect x="410" y="150" width="100" height="8" rx="2" fill="#ff6b6b" opacity="0.6"/>
+  <rect x="410" y="165" width="80" height="8" rx="2" fill="#4ecdc4" opacity="0.6"/>
+  <rect x="410" y="180" width="60" height="8" rx="2" fill="#7b68ee" opacity="0.6"/>
+
+  <!-- Mobile Frame -->
+  <rect x="450" y="200" width="50" height="90" rx="8" fill="none" stroke="#00ffff" stroke-width="2" opacity="0.8"/>
+  <rect x="455" y="210" width="40" height="5" rx="1" fill="#00ffff" opacity="0.6"/>
+  <rect x="455" y="220" width="30" height="5" rx="1" fill="#e040fb" opacity="0.6"/>
+
+  <!-- Floating Code Particles -->
+  <circle cx="150" cy="250" r="3" fill="#ff6b6b" filter="url(#glow)">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 10,-5; 0,0" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="300" cy="280" r="4" fill="#4ecdc4" filter="url(#glow)">
+    <animateTransform attributeName="transform" type="translate" values="0,0; -8,8; 0,0" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="420" cy="260" r="2" fill="#00ffff" filter="url(#glow)">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 5,-10; 0,0" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>

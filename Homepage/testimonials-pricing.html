@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Success & Pricing - DigitalCraft</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlroq8y6y6m6g2Wp0d6U/XwV2+G5C8f/y8J3L5C9z5E1T7y8K4w4W2Xj6qC2Z5Z5q5z5q5z5q5z5q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* General Resets and Base Styles (Consistent with your homepage) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a; /* Dark background */
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode {
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem; /* Reduced margin for sub-heading */
+            color: #ffffff;
+            position: relative;
+            z-index: 1; /* Ensure title is above particles */
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #cccccc;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonials-page-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #100520, #0a0a0a); /* Darker purple gradient */
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .testimonials-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .testimonials-particles .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonials-header .main-title {
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #c7379d, #ff6b6b); /* Pink/Red gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        .testimonials-header .sub-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #d1b1d7; /* Lighter purple for sub-title */
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .testimonials-header .sub-title::before,
+        .testimonials-header .sub-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 2px;
+            background: #d1b1d7;
+            transform: translateY(-50%);
+        }
+
+        .testimonials-header .sub-title::before {
+            left: -50px;
+        }
+
+        .testimonials-header .sub-title::after {
+            right: -50px;
+        }
+
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .swiper-slide {
+            background: linear-gradient(145deg, rgba(42, 10, 74, 0.9), rgba(60, 20, 100, 0.9)); /* Dark purple card */
+            border: 1px solid rgba(150, 50, 200, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 350px; /* Ensure consistent height */
+        }
+
+        .swiper-slide.swiper-slide-active {
+            box-shadow: 0 25px 60px rgba(255, 107, 107, 0.2), 0 0 30px rgba(255, 107, 107, 0.1);
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 107, 107, 0.5); /* Accent border on active */
+        }
+
+        .testimonial-quote {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-style: italic;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .testimonial-quote::before {
+            content: '“';
+            font-family: serif;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5rem;
+            color: #ff6b6b;
+            opacity: 0.2;
+            line-height: 1;
+            z-index: 0;
+            animation: quoteIn 0.8s ease-out;
+        }
+
+        .testimonial-author-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: auto; /* Push to bottom */
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 3px solid #ff6b6b;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .author-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 107, 107, 0.7);
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-weight: bold;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-role {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        .company-logo-text {
+            color: #888;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Swiper Navigation & Pagination */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #ff6b6b;
+            font-size: 2rem !important;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.3);
+            opacity: 0.8;
+            width: 10px;
+            height: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #ff6b6b;
+            width: 12px;
+            height: 12px;
+            transform: scale(1.2);
+        }
+
+        /* --- Pricing Section --- */
+        .pricing-section {
+            padding: 100px 0;
+            background: #0a0a0a; /* Match homepage base background */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 10% 10%, rgba(255, 107, 107, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at 90% 90%, rgba(78, 205, 196, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: bg-pan 30s linear infinite;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .pricing-toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3rem;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-toggle {
+            position: relative;
+            width: 180px;
+            height: 50px;
+            background-color: #2a2a2a;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-toggle::before {
+            content: '';
+            position: absolute;
+            width: 85px; /* Adjust based on padding and toggle width */
+            height: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50px;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 0;
+        }
+
+        .pricing-toggle.yearly::before {
+            transform: translateX(90px); /* Move to the right */
+        }
+
+        .toggle-option {
+            flex: 1;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ccc;
+            transition: color 0.3s ease;
+            z-index: 1;
+            padding: 5px 0;
+        }
+
+        .toggle-option.active {
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .price-card {
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            padding: 2.5rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .price-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.3);
+        }
+
+        .price-card.popular {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px #ff6b6b, 0 20px 50px rgba(255, 107, 107, 0.4);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ff5252);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .price-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b; /* Accent color for plan names */
+        }
+
+        .price-card .price {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .price-card .price span {
+            font-size: 1.5rem;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-left: 5px;
+        }
+
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+            flex-grow: 1; /* Push button to bottom */
+        }
+
+        .price-card ul li {
+            margin-bottom: 0.8rem;
+            color: #cccccc;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            opacity: 0; /* Hidden for feature animation */
+            animation: fadeInRight 0.5s ease-out forwards;
+        }
+
+        .price-card:hover ul li {
+             opacity: 1; /* Show on hover */
+             animation-delay: var(--delay); /* Use custom property for staggered animation */
+        }
+
+        .price-card ul li i {
+            color: #4ecdc4; /* Green checkmark */
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .price-card .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 1;
+            margin-top: auto; /* Push to bottom of card */
+        }
+
+        .price-card .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .price-card .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .price-card .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .testimonials-header .sub-title::before,
+            .testimonials-header .sub-title::after {
+                width: 20px;
+                left: -30px;
+                right: -30px;
+            }
+            .swiper-slide {
+                padding: 2rem;
+                min-height: 300px;
+            }
+            .testimonial-quote::before {
+                font-size: 3rem;
+                top: -10px;
+            }
+            .author-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            .pricing-toggle {
+                width: 150px;
+                height: 40px;
+            }
+            .pricing-toggle::before {
+                width: 70px;
+                height: 30px;
+            }
+            .pricing-toggle.yearly::before {
+                transform: translateX(80px);
+            }
+            .toggle-option {
+                font-size: 0.9rem;
+            }
+            .price-card h3 {
+                font-size: 1.8rem;
+            }
+            .price-card .price {
+                font-size: 3rem;
+            }
+        }
+
+        /* Animations (Re-used/Adapted from homepage) */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        @keyframes quoteIn {
+            from { transform: translateX(-50%) translateY(-30px) scale(0); opacity: 0; }
+            to { transform: translateX(-50%) translateY(-20px) scale(1); opacity: 0.2; }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bg-pan {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode" style="position: fixed; top: 20px; right: 20px; background: #ff6b6b; color: white; border: none; padding: 12px; border-radius: 50%; cursor: pointer; z-index: 2000; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);">🌓</button>
+
+    <section id="testimonials-page" class="testimonials-page-section">
+        <div class="testimonials-particles" id="testimonials-particles"></div>
+        <div class="container" data-aos="fade-up">
+            <div class="testimonials-header">
+                <h2 class="main-title">Happy Clients, Successful Projects</h2>
+                <h3 class="sub-title">Customer Testimonials</h3>
+            </div>
+
+            <div class="swiper swiper-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide testimonial-slide">
+                        <p class="testimonial-quote">
+                            "DigitalCraft transformed our online presence. Their design team is incredibly talented, and the development process was seamless. Highly recommended!"
+                        </p>
+                        <div class="testimonial-author-info">
+                            <div class="author-avatar">
+                                <img src="https://i.pravatar.cc/150?img=1" alt="Jane Doe">
+                            </div>
+                            <div class="author-name">Jane Doe</div>
+                            <div class="author-role">CEO, Tech Solutions Inc.</div>
+                            <div class="company-logo-text">Client since 2022</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide testimonial-slide">
+                        <p class="testimonial-quote">
+                            "The mobile app they developed for us exceeded all expectations. It's fast, beautiful, and our users love it. A truly professional team."
+                        </p>
+                        <div class="testimonial-author-info">
+                            <div class="author-avatar">
+                                <img src="https://i.pravatar.cc/150?img=2" alt="John Smith">
+                            </div>
+                            <div class="author-name">John Smith</div>
+                            <div class="author-role">Founder, Fitness First</div>
+                            <div class="company-logo-text">Partnership since 2021</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide testimonial-slide">
+                        <p class="testimonial-quote">
+                            "From concept to launch, DigitalCraft provided exceptional service. Their attention to detail and commitment to quality made all the difference."
+                        </p>
+                        <div class="testimonial-author-info">
+                            <div class="author-avatar">
+                                <img src="https://i.pravatar.cc/150?img=3" alt="Emily White">
+                            </div>
+                            <div class="author-name">Emily White</div>
+                            <div class="author-role">Marketing Director, Global Brands</div>
+                            <div class="company-logo-text">Joined in 2023</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide testimonial-slide">
+                        <p class="testimonial-quote">
+                            "The UI/UX design work was phenomenal. Our users immediately responded positively to the new interface. DigitalCraft truly understands user-centric design."
+                        </p>
+                        <div class="testimonial-author-info">
+                            <div class="author-avatar">
+                                <img src="https://i.pravatar.cc/150?img=4" alt="Michael Brown">
+                            </div>
+                            <div class="author-name">Michael Brown</div>
+                            <div class="author-role">Product Lead, InnovateX</div>
+                            <div class="company-logo-text">Successfully launched</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="container" data-aos="fade-up">
+            <h2 class="section-title">Flexible Plans, Powerful Results</h2>
+            <p class="section-subtitle">Choose the perfect partnership for your digital design and web development needs.</p>
+
+            <div class="pricing-toggle-container">
+                <div class="pricing-toggle" id="pricingToggle">
+                    <div class="toggle-option active" data-period="monthly">Monthly</div>
+                    <div class="toggle-option" data-period="yearly">Annually</div>
+                </div>
+            </div>
+
+            <div class="price-grid">
+                <div class="price-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Starter</h3>
+                    <div class="price">
+                        $<span data-monthly="99" data-yearly="999">99</span><span>/mo</span>
+                    </div>
+                    <ul>
+                        <li style="--delay: 0s;"><i class="fas fa-check-circle"></i> Basic UI/UX Consultation</li>
+                        <li style="--delay: 0.05s;"><i class="fas fa-check-circle"></i> Single Page Website</li>
+                        <li style="--delay: 0.1s;"><i class="fas fa-check-circle"></i> Responsive Design</li>
+                        <li style="--delay: 0.15s;"><i class="fas fa-check-circle"></i> Standard SEO Setup</li>
+                        <li style="--delay: 0.2s;"><i class="fas fa-check-circle"></i> 30-Day Support</li>
+                    </ul>
+                    <a href="#" class="cta-button">Choose Starter</a>
+                </div>
+
+                <div class="price-card popular" data-aos="fade-up" data-aos-delay="200">
+                    <span class="popular-badge">Most Popular</span>
+                    <h3>Professional</h3>
+                    <div class="price">
+                        $<span data-monthly="299" data-yearly="2999">299</span><span>/mo</span>
+                    </div>
+                    <ul>
+                        <li style="--delay: 0s;"><i class="fas fa-check-circle"></i> In-depth UI/UX Strategy</li>
+                        <li style="--delay: 0.05s;"><i class="fas fa-check-circle"></i> Multi-Page Website/App</li>
+                        <li style="--delay: 0.1s;"><i class="fas fa-check-circle"></i> Advanced Animations</li>
+                        <li style="--delay: 0.15s;"><i class="fas fa-check-circle"></i> Custom Development</li>
+                        <li style="--delay: 0.2s;"><i class="fas fa-check-circle"></i> E-commerce Integration</li>
+                        <li style="--delay: 0.25s;"><i class="fas fa-check-circle"></i> 60-Day Priority Support</li>
+                    </ul>
+                    <a href="#" class="cta-button">Choose Professional</a>
+                </div>
+
+                <div class="price-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Enterprise</h3>
+                    <div class="price">
+                        $<span data-monthly="499" data-yearly="4999">499</span><span>/mo</span>
+                    </div>
+                    <ul>
+                        <li style="--delay: 0s;"><i class="fas fa-check-circle"></i> Dedicated Design & Dev Team</li>
+                        <li style="--delay: 0.05s;"><i class="fas fa-check-circle"></i> Custom Enterprise Solutions</li>
+                        <li style="--delay: 0.1s;"><i class="fas fa-check-circle"></i> Ongoing Feature Development</li>
+                        <li style="--delay: 0.15s;"><i class="fas fa-check-circle"></i> Advanced API Integrations</li>
+                        <li style="--delay: 0.2s;"><i class="fas fa-check-circle"></i> Scalable Cloud Infrastructure</li>
+                        <li style="--delay: 0.25s;"><i class="fas fa-check-circle"></i> 24/7 Dedicated Support</li>
+                        <li style="--delay: 0.3s;"><i class="fas fa-check-circle"></i> Strategic Consulting</li>
+                    </ul>
+                    <a href="#" class="cta-button">Contact for Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                mirror: false,
+            });
+
+            // Dark Mode Toggle (Replicated from homepage for consistency)
+            const darkToggle = document.getElementById('darkToggle');
+            if (darkToggle) {
+                darkToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                    const isLightMode = document.body.classList.contains('light-mode');
+                    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+                    darkToggle.textContent = isLightMode ? '☀️' : '🌓';
+                });
+
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'light') {
+                    document.body.classList.add('light-mode');
+                    darkToggle.textContent = '☀️';
+                } else {
+                    darkToggle.textContent = '🌓';
+                }
+            }
+
+
+            // Testimonials Particles
+            const particlesContainer = document.getElementById('testimonials-particles');
+            function createParticle(container) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 8 + 5; // Size between 5px and 13px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 10 + 8}s`; // Duration between 8s and 18s
+                particle.style.animationDelay = `${Math.random() * 5}s`; // Delay up to 5s
+                container.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, parseFloat(particle.style.animationDuration) * 1000 + parseFloat(particle.style.animationDelay) * 1000 + 1000);
+            }
+            if (particlesContainer) {
+                setInterval(() => createParticle(particlesContainer), 300);
+            }
+
+
+            // Swiper Testimonial Slider
+            const swiper = new Swiper('.swiper-container', {
+                effect: 'coverflow', // Or 'cards' for a similar but different stacked effect
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto', // Adjust based on your design
+                loop: true,
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 1.5, // Show part of the next/prev slide
+                    },
+                    1024: {
+                        slidesPerView: 2.2, // Show part of the next/prev slide
+                    },
+                },
+            });
+
+            // Pricing Toggle
+            const pricingToggle = document.getElementById('pricingToggle');
+            if (pricingToggle) {
+                pricingToggle.addEventListener('click', () => {
+                    pricingToggle.classList.toggle('yearly');
+                    const isYearly = pricingToggle.classList.contains('yearly');
+                    const priceSpans = document.querySelectorAll('.price-card .price span[data-monthly][data-yearly]');
+                    const periodText = document.querySelectorAll('.price-card .price span:last-child');
+                    const monthlyOption = pricingToggle.querySelector('[data-period="monthly"]');
+                    const yearlyOption = pricingToggle.querySelector('[data-period="yearly"]');
+
+                    if (isYearly) {
+                        monthlyOption.classList.remove('active');
+                        yearlyOption.classList.add('active');
+                    } else {
+                        monthlyOption.classList.add('active');
+                        yearlyOption.classList.remove('active');
+                    }
+
+                    priceSpans.forEach(span => {
+                        const targetPrice = isYearly ? span.dataset.yearly : span.dataset.monthly;
+                        const currentPrice = parseInt(span.textContent);
+
+                        // Simple number animation (can be enhanced with GSAP/anime.js)
+                        let start = currentPrice;
+                        let end = parseInt(targetPrice);
+                        let duration = 300; // ms
+                        let startTime = null;
+
+                        function animatePrice(currentTime) {
+                            if (!startTime) startTime = currentTime;
+                            const progress = (currentTime - startTime) / duration;
+                            const animatedPrice = start + (end - start) * progress;
+
+                            if (progress < 1) {
+                                span.textContent = Math.ceil(animatedPrice);
+                                requestAnimationFrame(animatePrice);
+                            } else {
+                                span.textContent = end;
+                            }
+                        }
+                        requestAnimationFrame(animatePrice);
+                    });
+
+                    periodText.forEach(span => {
+                        span.textContent = isYearly ? '/yr' : '/mo';
+                    });
+                });
+            }
+
+            // Custom Rellax for pricing dots background (if desired, not crucial for this design)
+            // if (document.querySelector('.rellax-pricing')) {
+            //     new Rellax('.rellax-pricing', {
+            //         speed: -3,
+            //         center: true,
+            //         wrapper: null,
+            //         round: true,
+            //         vertical: true,
+            //         horizontal: false
+            //     });
+            // }
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg width="450" height="550" viewBox="0 0 450 550" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="processGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7b68ee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e040fb;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="450" height="550" fill="url(#processGradient)" rx="15"/>
+  <circle cx="225" cy="180" r="50" fill="white" opacity="0.9"/>
+  <rect x="215" y="220" width="20" height="35" fill="white" opacity="0.9"/>
+  <rect x="205" y="255" width="40" height="8" fill="white" opacity="0.9" rx="4"/>
+  <circle cx="320" cy="120" r="25" fill="white" opacity="0.7"/>
+  <rect x="310" y="105" width="20" height="8" fill="white" opacity="0.7"/>
+  <rect x="310" y="127" width="20" height="8" fill="white" opacity="0.7"/>
+  <text x="225" y="400" text-anchor="middle" fill="white" font-size="28" font-weight="bold">Creative Process</text>
+</svg>

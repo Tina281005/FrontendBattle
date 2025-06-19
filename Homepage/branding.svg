@@ -1,0 +1,95 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7b68ee;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e040fb;stop-opacity:1" />
+    </linearGradient>
+    <filter id="brandGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="#0a0a0a"/>
+
+  <!-- Brand Shield/Logo Container -->
+  <path d="M300 50 L350 80 L350 160 Q350 180 300 200 Q250 180 250 160 L250 80 Z" fill="url(#brandGradient)" opacity="0.8" filter="url(#brandGlow)">
+    <animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="3s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Inner Brand Symbol -->
+  <circle cx="300" cy="125" r="30" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.9">
+    <animate attributeName="r" values="30;35;30" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <path d="M285 125 L300 110 L315 125 L300 140 Z" fill="#ffffff" opacity="0.9">
+    <animateTransform attributeName="transform" type="rotate" values="0 300 125; 360 300 125" dur="8s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Color Palette -->
+  <rect x="50" y="250" width="150" height="100" rx="10" fill="#1a1a1a" stroke="url(#brandGradient)" stroke-width="2"/>
+  <text x="125" y="275" fill="#ffffff" font-size="12" text-anchor="middle" font-family="Arial">Color Palette</text>
+
+  <circle cx="80" cy="300" r="12" fill="#ff6b6b">
+    <animate attributeName="r" values="12;15;12" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="110" cy="300" r="12" fill="#4ecdc4">
+    <animate attributeName="r" values="12;15;12" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="140" cy="300" r="12" fill="#7b68ee">
+    <animate attributeName="r" values="12;15;12" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="170" cy="300" r="12" fill="#00ffff">
+    <animate attributeName="r" values="12;15;12" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <circle cx="80" cy="325" r="12" fill="#e040fb">
+    <animate attributeName="r" values="12;15;12" dur="2.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="110" cy="325" r="12" fill="#ffeb3b">
+    <animate attributeName="r" values="12;15;12" dur="2.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="140" cy="325" r="12" fill="#4caf50">
+    <animate attributeName="r" values="12;15;12" dur="2.7s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="170" cy="325" r="12" fill="#ff9800">
+    <animate attributeName="r" values="12;15;12" dur="2.1s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Typography Sample -->
+  <rect x="230" y="250" width="150" height="100" rx="10" fill="#1a1a1a" stroke="url(#brandGradient)" stroke-width="2"/>
+  <text x="305" y="275" fill="#ffffff" font-size="12" text-anchor="middle" font-family="Arial">Typography</text>
+
+  <text x="250" y="295" fill="#ff6b6b" font-size="16" font-family="Arial" font-weight="bold">Brand Name</text>
+  <text x="250" y="315" fill="#4ecdc4" font-size="14" font-family="Arial">Heading Style</text>
+  <text x="250" y="330" fill="#cccccc" font-size="12" font-family="Arial">Body Text Style</text>
+
+  <!-- Brand Guidelines -->
+  <rect x="400" y="250" width="150" height="100" rx="10" fill="#1a1a1a" stroke="url(#brandGradient)" stroke-width="2"/>
+  <text x="475" y="275" fill="#ffffff" font-size="12" text-anchor="middle" font-family="Arial">Guidelines</text>
+
+  <!-- Logo Usage Examples -->
+  <rect x="420" y="285" width="30" height="20" rx="3" fill="#7b68ee" opacity="0.8"/>
+  <rect x="460" y="285" width="30" height="20" rx="3" fill="none" stroke="#7b68ee" stroke-width="1"/>
+  <rect x="500" y="285" width="30" height="20" rx="3" fill="#2a2a2a" stroke="#7b68ee" stroke-width="1"/>
+
+  <rect x="420" y="315" width="40" height="5" rx="2" fill="#ff6b6b" opacity="0.6"/>
+  <rect x="470" y="315" width="30" height="5" rx="2" fill="#4ecdc4" opacity="0.6"/>
+  <rect x="510" y="315" width="25" height="5" rx="2" fill="#00ffff" opacity="0.6"/>
+
+  <!-- Brand Elements Floating -->
+  <path d="M100 150 Q120 130 140 150 Q120 170 100 150" fill="#ff6b6b" opacity="0.6">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 20,-10; 0,0" dur="4s" repeatCount="indefinite"/>
+  </path>
+
+  <polygon points="450,150 470,140 470,160" fill="#4ecdc4" opacity="0.7">
+    <animateTransform attributeName="transform" type="rotate" values="0 460 150; 360 460 150" dur="6s" repeatCount="indefinite"/>
+  </polygon>
+
+  <rect x="500" y="150" width="15" height="15" rx="3" fill="#00ffff" opacity="0.6">
+    <animateTransform attributeName="transform" type="translate" values="0,0; -15,10; 0,0" dur="3.5s" repeatCount="indefinite"/>
+  </rect>
+</svg>
