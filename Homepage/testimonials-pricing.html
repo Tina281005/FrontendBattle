@@ -43,7 +43,7 @@
 
         .section-title {
             text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2rem, 4vw, 3rem); /* Responsive font size */
             margin-bottom: 1.5rem; /* Reduced margin for sub-heading */
             color: #ffffff;
             position: relative;
@@ -63,7 +63,7 @@
 
         .section-subtitle {
             text-align: center;
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(1rem, 2vw, 1.2rem); /* Responsive font size */
             color: #cccccc;
             margin-bottom: 3rem;
             opacity: 0.8;
@@ -77,10 +77,10 @@
             position: relative;
             overflow: hidden;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            display: flex; /* Flexbox for centering */
+            flex-direction: column; /* Flexbox for centering */
+            justify-content: center; /* Flexbox for centering */
+            align-items: center; /* Flexbox for centering */
         }
 
         .testimonials-particles {
@@ -108,7 +108,7 @@
         }
 
         .testimonials-header .main-title {
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(3rem, 7vw, 5rem); /* Responsive font size */
             font-weight: 700;
             margin-bottom: 0.5rem;
             background: linear-gradient(45deg, #c7379d, #ff6b6b); /* Pink/Red gradient */
@@ -118,7 +118,7 @@
         }
 
         .testimonials-header .sub-title {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1.2rem, 3vw, 1.8rem); /* Responsive font size */
             color: #d1b1d7; /* Lighter purple for sub-title */
             position: relative;
             display: inline-block;
@@ -146,7 +146,7 @@
         }
 
         .swiper-container {
-            width: 100%;
+            width: 100%; /* Full width */
             padding-top: 50px;
             padding-bottom: 50px;
             position: relative;
@@ -162,8 +162,8 @@
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            display: flex; /* Flexbox for content arrangement */
+            flex-direction: column; /* Flexbox for content arrangement */
             justify-content: space-between;
             align-items: center;
             min-height: 350px; /* Ensure consistent height */
@@ -176,7 +176,7 @@
         }
 
         .testimonial-quote {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem); /* Responsive font size */
             font-style: italic;
             color: #e0e0e0;
             margin-bottom: 2rem;
@@ -303,7 +303,7 @@
         }
 
         .pricing-toggle-container {
-            display: flex;
+            display: flex; /* Flexbox for toggle */
             justify-content: center;
             align-items: center;
             margin-bottom: 3rem;
@@ -357,8 +357,8 @@
         }
 
         .price-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: grid; /* Grid for pricing cards */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid columns */
             gap: 2.5rem;
             margin-top: 3rem;
             position: relative;
@@ -374,8 +374,8 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            display: flex; /* Flexbox for card content */
+            flex-direction: column; /* Flexbox for card content */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
@@ -497,7 +497,7 @@
         }
 
         /* Responsive Adjustments */
-        @media (max-width: 768px) {
+        @media (max-width: 768px) { /* Media query for smaller screens */
             .testimonials-header .sub-title::before,
             .testimonials-header .sub-title::after {
                 width: 20px;
@@ -505,36 +505,36 @@
                 right: -30px;
             }
             .swiper-slide {
-                padding: 2rem;
-                min-height: 300px;
+                padding: 2rem; /* Adjusted padding */
+                min-height: 300px; /* Adjusted min-height */
             }
             .testimonial-quote::before {
-                font-size: 3rem;
+                font-size: 3rem; /* Adjusted font size */
                 top: -10px;
             }
             .author-avatar {
-                width: 60px;
-                height: 60px;
+                width: 60px; /* Adjusted size */
+                height: 60px; /* Adjusted size */
             }
             .pricing-toggle {
-                width: 150px;
-                height: 40px;
+                width: 150px; /* Adjusted width */
+                height: 40px; /* Adjusted height */
             }
             .pricing-toggle::before {
-                width: 70px;
-                height: 30px;
+                width: 70px; /* Adjusted width */
+                height: 30px; /* Adjusted height */
             }
             .pricing-toggle.yearly::before {
-                transform: translateX(80px);
+                transform: translateX(80px); /* Adjusted transform */
             }
             .toggle-option {
-                font-size: 0.9rem;
+                font-size: 0.9rem; /* Adjusted font size */
             }
             .price-card h3 {
-                font-size: 1.8rem;
+                font-size: 1.8rem; /* Adjusted font size */
             }
             .price-card .price {
-                font-size: 3rem;
+                font-size: 3rem; /* Adjusted font size */
             }
         }
 
@@ -796,7 +796,7 @@
                 effect: 'coverflow', // Or 'cards' for a similar but different stacked effect
                 grabCursor: true,
                 centeredSlides: true,
-                slidesPerView: 'auto', // Adjust based on your design
+                slidesPerView: 'auto', // This is key for mobile responsiveness, automatically adjusts slides per view
                 loop: true,
                 coverflowEffect: {
                     rotate: 50,
@@ -817,12 +817,12 @@
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
-                breakpoints: {
+                breakpoints: { // Swiper breakpoints for different screen sizes
                     768: {
-                        slidesPerView: 1.5, // Show part of the next/prev slide
+                        slidesPerView: 1.5, // Show part of the next/prev slide on tablets
                     },
                     1024: {
-                        slidesPerView: 2.2, // Show part of the next/prev slide
+                        slidesPerView: 2.2, // Show part of the next/prev slide on desktops
                     },
                 },
             });
