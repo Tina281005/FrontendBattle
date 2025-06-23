@@ -11,9 +11,7 @@
 - Chart.js – graphs and metrics
 
 ## 🌟 Features
-- Dark mode toggle
-- Responsive design (mobile-first)
+- Responsive design
 - Scroll-triggered animations
 - Interactive carousel
-- Stats section with Chart.js
 - Accessibility with ARIA support
