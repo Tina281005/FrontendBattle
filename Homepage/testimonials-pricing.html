@@ -21,6 +21,13 @@
             scroll-behavior: smooth;
         }
 
+        .dark-toggle {
+    background: #4a90e2; /* Changed from red to blue */
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3); /* Changed shadow color */
+}
+
+
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0a0a0a; /* Dark background */
@@ -73,7 +80,7 @@
         /* --- Testimonials Section --- */
         .testimonials-page-section {
             padding: 100px 0;
-            background: linear-gradient(135deg, #100520, #0a0a0a); /* Darker purple gradient */
+             background: linear-gradient(135deg, #001122, #0a0a0a); /* Changed from purple gradient */
             position: relative;
             overflow: hidden;
             min-height: 100vh;
@@ -111,7 +118,7 @@
             font-size: clamp(3rem, 7vw, 5rem); /* Responsive font size */
             font-weight: 700;
             margin-bottom: 0.5rem;
-            background: linear-gradient(45deg, #c7379d, #ff6b6b); /* Pink/Red gradient */
+              background: linear-gradient(45deg, #4a90e2, #6bb6ff); /* Changed from pink/red to blue gradient */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeInScale 1s ease-out;
@@ -119,7 +126,7 @@
 
         .testimonials-header .sub-title {
             font-size: clamp(1.2rem, 3vw, 1.8rem); /* Responsive font size */
-            color: #d1b1d7; /* Lighter purple for sub-title */
+              color: #87ceeb; /* Changed from light purple to light blue */
             position: relative;
             display: inline-block;
             opacity: 0;
@@ -133,7 +140,7 @@
             top: 50%;
             width: 40px;
             height: 2px;
-            background: #d1b1d7;
+            background: #87ceeb; /* Changed from light purple to light blue */
             transform: translateY(-50%);
         }
 
@@ -154,8 +161,8 @@
         }
 
         .swiper-slide {
-            background: linear-gradient(145deg, rgba(42, 10, 74, 0.9), rgba(60, 20, 100, 0.9)); /* Dark purple card */
-            border: 1px solid rgba(150, 50, 200, 0.2);
+             background: linear-gradient(145deg, rgba(0, 34, 68, 0.9), rgba(0, 51, 102, 0.9)); /* Changed from purple to regal blue */
+    border: 1px solid rgba(74, 144, 226, 0.2); /* Changed border color */
             border-radius: 25px;
             padding: 3rem;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
@@ -170,9 +177,9 @@
         }
 
         .swiper-slide.swiper-slide-active {
-            box-shadow: 0 25px 60px rgba(255, 107, 107, 0.2), 0 0 30px rgba(255, 107, 107, 0.1);
             transform: translateY(-10px) scale(1.02);
-            border-color: rgba(255, 107, 107, 0.5); /* Accent border on active */
+            box-shadow: 0 25px 60px rgba(74, 144, 226, 0.2), 0 0 30px rgba(74, 144, 226, 0.1); /* Changed from red to blue */
+            border-color: rgba(74, 144, 226, 0.5); /* Changed border color */
         }
 
         .testimonial-quote {
@@ -213,14 +220,14 @@
             border-radius: 50%;
             overflow: hidden;
             margin-bottom: 1rem;
-            border: 3px solid #ff6b6b;
-            box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+            border: 3px solid #4a90e2; /* Changed from red to blue */
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.5); /* Changed shadow color */
             transition: all 0.3s ease;
         }
 
         .author-avatar:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(255, 107, 107, 0.7);
+          box-shadow: 0 0 25px rgba(74, 144, 226, 0.7); /* Changed hover shadow */
         }
 
         .author-avatar img {
@@ -231,7 +238,7 @@
 
         .author-name {
             font-weight: bold;
-            color: #ff6b6b;
+           color: #4a90e2; /* Changed from red to blue */
             font-size: 1.2rem;
             margin-bottom: 0.3rem;
         }
@@ -251,7 +258,7 @@
         /* Swiper Navigation & Pagination */
         .swiper-button-next,
         .swiper-button-prev {
-            color: #ff6b6b;
+            color: #4a90e2; /* Changed from red to blue */
             font-size: 2rem !important;
             opacity: 0.7;
             transition: all 0.3s ease;
@@ -272,11 +279,139 @@
         }
 
         .swiper-pagination-bullet-active {
-            background: #ff6b6b;
+           background: #4a90e2; /* Changed from red to blue */
             width: 12px;
             height: 12px;
             transform: scale(1.2);
         }
+
+
+        /* --- Navigation Bar --- */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+                font-weight: bold;
+                background: linear-gradient(45deg, var(--accent-primary), var(--accent-teal)); /* Updated gradient */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .nav-menu {
+                display: flex;
+                list-style: none;
+                gap: 2.5rem;
+            }
+
+            .nav-item .nav-link {
+                color: var(--text-light);
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: 500;
+                transition: color 0.3s ease, transform 0.3s ease;
+                position: relative;
+            }
+
+            .nav-item .nav-link::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -5px;
+                width: 0;
+                height: 2px;
+                background: var(--accent-primary);
+                transition: width 0.3s ease;
+            }
+
+            .nav-item .nav-link:hover::after {
+                width: 100%;
+            }
+
+            .nav-item .nav-link:hover {
+                color: var(--accent-primary);
+                transform: translateY(-3px);
+            }
+
+            .nav-item .nav-link.active {
+                color: var(--accent-primary);
+                font-weight: 700;
+            }
+
+            .nav-item .nav-link.active::after {
+                width: 100%;
+                background: var(--accent-primary);
+            }
+
+            .mobile-menu-toggle {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+
+            .mobile-menu-toggle .bar {
+                width: 25px;
+                height: 3px;
+                background-color: var(--text-light);
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 250px;
+                height: 100%;
+                background: var(--bg-dark-secondary);
+                padding-top: 80px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+                transition: right 0.3s ease;
+                z-index: 999;
+            }
+
+            .mobile-menu.active {
+                right: 0;
+            }
+
+            .mobile-menu .nav-item {
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .mobile-menu .nav-link {
+                color: var(--text-light);
+                text-decoration: none;
+                font-size: 1.1rem;
+                display: block;
+            }
+
+            .mobile-menu .nav-link:hover {
+                color: var(--accent-primary);
+            }
+
+
+
 
         /* --- Pricing Section --- */
         .pricing-section {
@@ -381,19 +516,19 @@
 
         .price-card:hover {
             transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.3);
+          box-shadow: 0 20px 50px rgba(74, 144, 226, 0.3); /* Changed from red to blue */
         }
 
         .price-card.popular {
-            border-color: #ff6b6b;
-            box-shadow: 0 0 0 3px #ff6b6b, 0 20px 50px rgba(255, 107, 107, 0.4);
+            border-color: #4a90e2; /* Changed from red to blue */
+    box-shadow: 0 0 0 3px #4a90e2, 0 20px 50px rgba(74, 144, 226, 0.4); /* Changed colors */
         }
 
         .popular-badge {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #ff5252);
+           background: linear-gradient(45deg, #4a90e2, #3a7bd5); /* Changed from red gradient to blue */
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
@@ -405,7 +540,7 @@
         .price-card h3 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            color: #ff6b6b; /* Accent color for plan names */
+           color: #4a90e2; /* Changed from red to blue */
         }
 
         .price-card .price {
@@ -456,7 +591,7 @@
 
         .price-card .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+             background: linear-gradient(45deg, #4a90e2, #6bb6ff); /* Changed from red gradient to blue */
             color: white;
             padding: 15px 30px;
             border: none;
@@ -493,7 +628,7 @@
 
         .price-card .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4); /* Changed from red to blue */
         }
 
         /* Responsive Adjustments */
@@ -624,6 +759,27 @@
                 <h2 class="main-title">Happy Clients, Successful Projects</h2>
                 <h3 class="sub-title">Customer Testimonials</h3>
             </div>
+
+            <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">DigitalCraft</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+                <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                 <li class="nav-item"><a href="testimonials-pricing.html" class="nav-link">Testimonials</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+
 
             <div class="swiper swiper-container" data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper">

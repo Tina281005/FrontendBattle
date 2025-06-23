@@ -344,11 +344,11 @@
 
     /* Stats Section */
     .stats-section {
-      padding: 100px 0;
-      background: linear-gradient(135deg, #2c3e50, #3498db);
-      position: relative;
-      overflow: hidden;
-    }
+  padding: 100px 0;
+  background: linear-gradient(135deg, #0c1e3e, #1a365d, #2c5282);
+  position: relative;
+  overflow: hidden;
+   }
     
     .stats-bg-pattern {
       position: absolute;
@@ -424,54 +424,90 @@
     }
     
     .portfolio-item {
-      position: relative;
-      height: 300px;
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    }
+        position: relative;
+        height: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
     
     .portfolio-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
-      opacity: 0.9;
-      transition: all 0.4s ease;
-    }
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+        transition: left 0.6s ease;
+     }
     
     .portfolio-item:hover::before {
-      opacity: 0.7;
-    }
+        left: 100%;
+     }
     
     .portfolio-item:hover {
-      transform: scale(1.05) translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(255, 107, 107, 0.2);
+        border-color: rgba(255, 107, 107, 0.3);
+      }
     
     .portfolio-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 2;
+        width: 90%;
     }
     
+          .portfolio-icon {
+          font-size: 3rem;
+          color: #ff6b6b;
+          margin-bottom: 1rem;
+          transition: all 0.3s ease;
+      }
+        .portfolio-item:hover .portfolio-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
     .portfolio-content h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        color: #ffffff;
+        background: linear-gradient(45deg, #fff, #ff6b6b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
     
     .portfolio-content p {
-      opacity: 0.9;
+        opacity: 0.9;
+        color: #cccccc;
+        line-height: 1.6;
+        font-size: 1rem;
     }
+
+        .portfolio-item::after {
+        content: '';
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 107, 107, 0.1);
+        border-radius: 50%;
+        animation: pulse 4s ease-in-out infinite;
+    }
+      @keyframes pulse {
+          0%, 100% { transform: scale(1); opacity: 0.7; }
+          50% { transform: scale(1.1); opacity: 1; }
+      }
 
     /* Testimonials Section */
     .testimonials-section {
@@ -536,33 +572,50 @@
       overflow: hidden;
     }
     
-    .clients-grid {
+    /* Animate client logos like video */
+    .elegant-entrance {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 2rem;
-      align-items: center;
       margin-top: 3rem;
     }
-    
-    .client-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 80px;
+
+    /* Fade In and Out Animation for Clients */
+      @keyframes fadeInOut {
+        0% { opacity: 0; transform: scale(0.9); }
+        10% { opacity: 1; transform: scale(1); }
+        90% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.9); }
+      }
+
+    .client-name {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      transition: all 0.3s ease;
+      padding: 20px;
+      text-align: center;
+      cursor: default;
       font-size: 1.2rem;
-      color: #888;
-      cursor: pointer;
-    }
-    
-    .client-logo:hover {
-      background: rgba(255, 107, 107, 0.1);
-      color: #ff6b6b;
-      transform: translateY(-5px);
+      color: #ffffff;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      animation: fadeInOut 6s ease-in-out infinite;
+      animation-delay: var(--delay);
     }
 
+    .client-name:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    }
+
+    .subtle-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .subtle-hover:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+    }
     /* Footer */
     .footer {
       background: #0a0a0a;
@@ -905,7 +958,7 @@
     <div class="nav-container">
       <div class="logo">DigitalCraft</div>
       <ul class="nav-menu" id="navMenu">
-        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="about.html" class="nav-link">About us</a></li>
         <li><a href="services.html" class="nav-link">Services</a></li>
         <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
         <li><a href="testimonials-pricing.html" class="nav-link">Testimonials</a></li>
@@ -1006,36 +1059,42 @@
       <div class="portfolio-grid">
         <a href="#" class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
           <div class="portfolio-content">
+            <div class="portfolio-icon">🛒</div>
             <h3>E-commerce Website Redesign</h3>
             <p>Modernizing an online retail experience with enhanced UI/UX.</p>
           </div>
         </a>
         <a href="#" class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
           <div class="portfolio-content">
+            <div class="portfolio-icon">⚙️</div>
             <h3>Custom CRM Development</h3>
             <p>Tailored customer relationship management system for a B2B client.</p>
           </div>
         </a>
         <a href="#" class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
           <div class="portfolio-content">
+            <div class="portfolio-icon">🏋️</div>
             <h3>Mobile App for Fitness</h3>
             <p>Intuitive and engaging mobile application for personal fitness tracking.</p>
           </div>
         </a>
         <a href="#" class="portfolio-item" data-aos="fade-up" data-aos-delay="400">
           <div class="portfolio-content">
+            <div class="portfolio-icon">✨</div>
             <h3>Brand Identity & Website</h3>
             <p>Complete branding and web presence for a new startup.</p>
           </div>
         </a>
         <a href="#" class="portfolio-item" data-aos="fade-up" data-aos-delay="500">
           <div class="portfolio-content">
+            <div class="portfolio-icon">☁️</div>
             <h3>SaaS Platform UI/UX</h3>
             <p>User interface and experience design for a cloud-based software solution.</p>
           </div>
         </a>
         <a href="#" class="portfolio-item" data-aos="fade-up" data-aos-delay="600">
           <div class="portfolio-content">
+            <div class="portfolio-icon">📚</div>
             <h3>Educational Portal Build</h3>
             <p>Development of an interactive online learning platform.</p>
           </div>
@@ -1072,19 +1131,26 @@
     </div>
   </section>
 
-  <section class="clients-section">
-    <div class="container">
-      <h2 class="section-title" data-aos="fade-up">Trusted by Industry Leaders</h2>
-      <div class="clients-grid">
-        <div class="client-logo" data-aos="fade-up" data-aos-delay="100">Company A</div>
-        <div class="client-logo" data-aos="fade-up" data-aos-delay="200">Brand X</div>
-        <div class="client-logo" data-aos="fade-up" data-aos-delay="300">Innovate Co.</div>
-        <div class="client-logo" data-aos="fade-up" data-aos-delay="400">Global Corp</div>
-        <div class="client-logo" data-aos="fade-up" data-aos-delay="500">Startup Y</div>
-        <div class="client-logo" data-aos="fade-up" data-aos-delay="600">Creative Hub</div>
-      </div>
+  <section class="clients-section" id="clients">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Trusted by Industry Leaders</h2>
+    <div class="clients-grid elegant-entrance">
+      <div class="client-name" style="--delay: 0s;">Brex</div>
+      <div class="client-name" style="--delay: 1s;">Runway</div>
+      <div class="client-name" style="--delay: 2s;">Supercell</div>
+      <div class="client-name" style="--delay: 3s;">Retool</div>
+      <div class="client-name" style="--delay: 4s;">OpenAI</div>
+      <div class="client-name" style="--delay: 5s;">Cash App</div>
     </div>
-  </section>
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="#" class="cta-button subtle-hover">
+        Meet our customers <span style="font-size: 1.2em;">&gt;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
 
   <footer id="contact" class="footer">
     <div class="container">

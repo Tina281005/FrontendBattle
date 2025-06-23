@@ -8,661 +8,745 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlroq8y6y6m6g2Wp0d6U/XwV2+G5C8f/y8J3L5C9z5E1T7y8K4w4W2Xj6qC2Z5Z5q5z5q5z5q5z5q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
-        /* CSS Variables for Color Scheme */
-        :root {
-            --bg-dark-primary: #0a0a0a;
-            --bg-dark-secondary: #1a0d30; /* Darker indigo/purple */
-            --bg-gradient-start: #180c2a; /* Video-inspired start */
-            --bg-gradient-end: #0a0a0a;   /* Your base dark */
-
-            --accent-coral: #ff6b6b; /* Vibrant Red/Pink - Will be used prominently like video's red */
-            --accent-coral-rgb: 255, 107, 107; /* RGB values for rgba() usage */
-            
-            --accent-teal: #4ecdc4;
-            --accent-teal-rgb: 78, 205, 196;
-
-            --accent-purple: #7b68ee; /* New primary video-inspired purple */
-            --accent-purple-rgb: 123, 104, 238;
-
-            --accent-neon-blue: #00ffff; /* Video-inspired neon blue */
-            --accent-neon-blue-rgb: 0, 255, 255;
-
-            --accent-neon-pink: #e040fb; /* Video-inspired bright pink */
-            --accent-neon-pink-rgb: 224, 64, 251;
-
-            --text-light: #ffffff;
-            --text-muted: #cccccc;
-
-            /* Specific section background colors (from your palette) */
-            --section-bg-dark: var(--bg-dark-primary);
-            --section-bg-coral: var(--accent-coral);
-            --section-bg-secondary-dark: var(--bg-dark-secondary);
-            --section-bg-purple: var(--accent-purple);
-        }
-
-        /* General Resets and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--section-bg-dark); /* Initial background for the body */
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden; /* Crucial to enable horizontal scrolling via JS/ScrollTrigger */
-            transition: background-color 0.5s ease; /* Smooth transition for body background */
-        }
-
-        /* Dark Mode */
-        body.light-mode {
-            background-color: #ffffff;
-            color: #1a1a1a;
-        }
-        body.light-mode .project-section {
-            color: #1a1a1a;
-        }
-        body.light-mode .project-title,
-        body.light-mode .read-more-btn {
-             color: #1a1a1a;
-             border-color: #1a1a1a;
-        }
-        body.light-mode .read-more-btn:hover {
-            color: white;
-        }
-        body.light-mode .project-number {
-            color: rgba(0, 0, 0, 0.08);
-        }
-
-
-        /* Global Overlays */
-        .geometric-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(var(--accent-neon-blue-rgb), 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(var(--accent-neon-blue-rgb), 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            opacity: 0.1;
-            animation: fadePulse 10s infinite alternate;
-            pointer-events: none;
-        }
-
-        .page-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            opacity: 0.3;
-            filter: blur(1px);
-            pointer-events: none;
-        }
-        .page-particle {
-            position: absolute;
-            background: var(--accent-neon-blue);
-            animation: float 10s infinite ease-in-out;
-            border-radius: 50%;
-        }
-        .page-particle.type2 {
-            background: var(--accent-neon-pink);
-            animation: float 12s infinite reverse ease-in-out;
-        }
-
-
-        /* --- Dark Mode Toggle --- */
-        .dark-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--accent-coral);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1001;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(var(--accent-coral-rgb), 0.3);
-        }
-
-        .dark-toggle:hover {
-            transform: scale(1.1) rotate(180deg);
-            box-shadow: 0 6px 20px rgba(var(--accent-coral-rgb), 0.4);
-        }
-
-        /* --- Navigation Bar --- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent-coral);
-            text-decoration: none;
-            background: linear-gradient(45deg, var(--accent-coral), var(--accent-neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-item .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: color 0.3s ease, transform 0.3s ease;
-            position: relative;
-        }
-
-        .nav-item .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 0;
-            height: 2px;
-            background: var(--accent-neon-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-item .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-item .nav-link:hover {
-            color: var(--accent-neon-blue);
-            transform: translateY(-3px);
-        }
-
-        .nav-item .nav-link.active {
-            color: var(--accent-neon-blue);
-            font-weight: 700;
-        }
-
-        .nav-item .nav-link.active::after {
-            width: 100%;
-            background: var(--accent-neon-blue);
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .mobile-menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-light);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            right: -300px; /* Hidden by default */
-            width: 250px;
-            height: 100%;
-            background: var(--bg-dark-secondary);
-            padding-top: 80px;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-            transition: right 0.3s ease;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            right: 0; /* Show menu */
-        }
-
-        .mobile-menu .nav-item {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 1.1rem;
-            display: block;
-        }
-
-        .mobile-menu .nav-link:hover {
-            color: var(--accent-coral);
-        }
-
-
-        /* --- Horizontal Scroll Wrapper (GSAP controlled) --- */
-        .horizontal-scroll-wrapper {
-            display: flex;
-            width: fit-content; /* Important for horizontal scrolling */
-            height: 100vh;
-            padding-top: 80px; /* Offset for fixed navbar */
-        }
-
-        /* --- Project Section Styles (adapted for services) --- */
-        .service-section {
-            flex: 0 0 100vw; /* Each section takes full viewport width */
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
-            transition: background-color 0.5s ease;
-            box-sizing: border-box;
-        }
-
-        .service-number {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%) translateX(20%);
-            font-size: clamp(10rem, 25vw, 20rem);
-            font-weight: 900;
-            color: rgba(var(--text-light), 0.08);
-            line-height: 1;
-            z-index: 0;
-            user-select: none;
-            pointer-events: none;
-        }
-
-        .service-content-left {
-            flex: 0 0 45%;
-            max-width: 700px;
-            text-align: left;
-            z-index: 1;
-            padding-right: 20px;
-        }
-
-        .service-tags {
-            margin-bottom: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .service-tags .tag {
-            display: inline-block;
-            background: var(--accent-neon-blue);
-            color: var(--text-light);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.8;
-        }
-        body.light-mode .service-tags .tag {
-            background: rgba(var(--accent-coral-rgb), 0.2);
-            color: #1a1a1a;
-        }
-
-        .service-title {
-            font-size: clamp(3rem, 7vw, 6rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            color: var(--text-light);
-        }
-
-        .read-more-btn {
-            background: none;
-            border: 2px solid var(--text-light);
-            color: var(--text-light);
-            padding: 15px 30px;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .read-more-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent-coral);
-            transition: left 0.3s ease-out;
-            z-index: -1;
-        }
-        .read-more-btn:hover::before {
-            left: 0;
-        }
-        .read-more-btn:hover {
-            color: var(--text-light);
-            border-color: var(--accent-coral);
-            box-shadow: 0 0 15px rgba(var(--accent-coral-rgb), 0.5);
-        }
-
-        .service-media-right {
-            flex: 0 0 50%;
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .service-media-right img, .service-media-right video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-            filter: brightness(0.9);
-            transition: filter 0.3s ease;
-        }
-        .service-media-right img:hover, .service-media-right video:hover {
-            filter: brightness(1);
-        }
-
-        /* Fixed Bottom Navigation */
-        .fixed-bottom-nav {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .scroll-dots {
-            display: flex;
-            gap: 10px;
-        }
-        .scroll-dot {
-            width: 12px;
-            height: 12px;
-            background-color: rgba(var(--text-light), 0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .scroll-dot.active {
-            background-color: var(--accent-coral);
-            transform: scale(1.2);
-        }
-
-        /* --- Modal for Service Details --- */
-        .service-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            z-index: 1002;
-        }
-
-        .service-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: var(--bg-dark-secondary);
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 800px;
-            width: 90%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-            position: relative;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: modalPopIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-            max-height: 90vh; /* Limit height to enable scrolling within modal */
-            overflow-y: auto; /* Enable scrolling for modal content */
-        }
-        .service-modal.active .modal-content {
-             opacity: 1;
-             transform: translateY(0);
-        }
-
-
-        .modal-close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .modal-close-btn:hover {
-            color: var(--accent-coral);
-        }
-
-        .modal-header {
-            font-size: 2.5rem;
-            color: var(--accent-coral);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            background: linear-gradient(45deg, var(--accent-coral), var(--accent-neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .modal-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .modal-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 2rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-        .modal-features li {
-            font-size: 1rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .modal-features li i {
-            color: var(--accent-teal);
-            font-size: 1.2rem;
-        }
-
-        .modal-image-container {
-            margin-top: 2rem;
-            text-align: center;
-        }
-        .modal-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            .mobile-menu-toggle {
-                display: flex;
-            }
-            .nav-container {
-                padding: 1rem 1rem;
-            }
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            /* Services section for mobile */
-            .service-section {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                padding: 50px 20px;
-                height: auto; /* Allow height to adjust */
-                min-height: 100vh;
-            }
-            .service-number {
-                position: static;
-                transform: none;
-                margin-bottom: 20px;
-                font-size: 8rem;
-                opacity: 0.05;
-            }
-            .service-content-left, .service-media-right {
-                flex: none;
-                width: 100%;
-                padding-right: 0;
-            }
-            .service-tags {
-                justify-content: center;
-            }
-            .service-title {
-                font-size: 2.5rem;
-            }
-            .read-more-btn {
-                width: 100%;
-            }
-            .service-media-right {
-                margin-top: 30px;
-                height: 40vh;
-            }
-
-            .fixed-bottom-nav {
-                flex-direction: column;
-                bottom: 10px;
-                gap: 10px;
-            }
-            .view-all-cases-btn {
-                width: 80%;
-                padding: 12px 20px;
-            }
-
-            .modal-content {
-                padding: 20px;
-            }
-            .modal-header {
-                font-size: 2rem;
-            }
-            .modal-description {
-                font-size: 0.9rem;
-            }
-        }
-
-
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes textGlow {
-            0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
-            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 107, 107, 0.4); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        @keyframes morph {
-            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            25% { border-radius: 50% 50% 30% 70% / 50% 30% 70% 50%; }
-            50% { border-radius: 70% 30% 50% 50% / 70% 50% 30% 50%; }
-            75% { border-radius: 30% 70% 50% 50% / 50% 70% 50% 30%; }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes fadePulse {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.05; }
-        }
-
-        @keyframes modalPopIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+   <style>
+    /* CSS Variables for Color Scheme - Updated to match index.html */
+:root {
+    --bg-dark-primary: #0a0a0a;
+    --bg-dark-secondary: #111111;
+    --bg-gradient-start: #1a1a1a;
+    --bg-gradient-end: #0a0a0a;
+
+    --accent-primary: #00838F; /* Changed to a darker shade of cyan */
+    --accent-primary-rgb: 0, 131, 143; /* RGB for the new primary accent */
+
+    --accent-teal: #4ecdc4; /* Secondary accent - kept as teal */
+    --accent-teal-rgb: 78, 205, 196;
+
+    /* Removed video-inspired colors, keeping only index.html colors */
+    --accent-purple: var(--accent-primary); /* Changed to new primary for consistency */
+    --accent-purple-rgb: var(--accent-primary-rgb);
+
+    --accent-neon-blue: var(--accent-teal); /* Changed to teal for consistency */
+    --accent-neon-blue-rgb: var(--accent-teal-rgb);
+
+    --accent-neon-pink: var(--accent-primary); /* Changed to new primary for consistency */
+    --accent-neon-pink-rgb: var(--accent-primary-rgb);
+
+    --text-light: #ffffff;
+    --text-muted: #cccccc;
+
+    /* Updated section background colors */
+    --section-bg-dark: var(--bg-dark-primary);
+    --section-bg-primary: #005662; /* Changed to a regal and soothing darker blue */
+    --section-bg-secondary-dark: var(--bg-dark-secondary);
+    --section-bg-purple: var(--accent-primary); /* Changed to new primary */
+}
+
+/* General Resets and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--section-bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease;
+}
+
+/* Dark Mode */
+body.light-mode {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+body.light-mode .service-section {
+    color: #1a1a1a;
+}
+body.light-mode .service-title,
+body.light-mode .read-more-btn {
+     color: #1a1a1a;
+     border-color: #1a1a1a;
+}
+body.light-mode .read-more-btn:hover {
+    color: white;
+}
+body.light-mode .service-number {
+    color: rgba(0, 0, 0, 0.08);
+}
+
+/* Global Overlays - Updated to match index.html aesthetic */
+.geometric-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(var(--accent-primary-rgb), 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--accent-teal-rgb), 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+    opacity: 0.1;
+    animation: fadePulse 10s infinite alternate;
+    pointer-events: none;
+}
+
+.page-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.3;
+    filter: blur(1px);
+    pointer-events: none;
+}
+.page-particle {
+    position: absolute;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-teal)); /* Updated gradient */
+    animation: float 10s infinite ease-in-out;
+    border-radius: 50%;
+}
+.page-particle.type2 {
+    background: linear-gradient(45deg, var(--accent-teal), var(--accent-primary)); /* Updated gradient */
+    animation: float 12s infinite reverse ease-in-out;
+    border-radius: 50%;
+}
+
+/* New CSS for moving bubbles */
+  
+.bubble-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Keep this at 1 to be above background but below content */
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    
+    /* More subtle styling - REDUCED OPACITY */
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(78, 205, 196, 0.15), 
+        rgba(0, 131, 143, 0.08)); /* Much more subtle */
+    border: 1px solid rgba(78, 205, 196, 0.2); /* Thinner, more subtle border */
+    box-shadow: 0 0 15px rgba(78, 205, 196, 0.1); /* Weaker glow */
+    backdrop-filter: blur(1px); /* Less blur */
+    
+    /* Add subtle animation for movement */
+    animation: bubbleFloat 25s infinite ease-in-out; /* Slower animation */
+}
+
+/* Different bubble types for variety - REDUCED OPACITY */
+.bubble.type1 {
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(0, 131, 143, 0.2), 
+        rgba(0, 131, 143, 0.08)); /* Much more subtle */
+    border: 1px solid rgba(0, 131, 143, 0.25);
+    box-shadow: 0 0 12px rgba(0, 131, 143, 0.15);
+    animation-delay: -8s;
+}
+
+.bubble.type2 {
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(78, 205, 196, 0.25), 
+        rgba(78, 205, 196, 0.1)); /* Much more subtle */
+    border: 1px solid rgba(78, 205, 196, 0.3);
+    box-shadow: 0 0 18px rgba(78, 205, 196, 0.2);
+    animation-delay: -15s;
+}
+
+.bubble.type3 {
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.15), 
+        rgba(255, 255, 255, 0.05)); /* Much more subtle white bubbles */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    animation-delay: -20s;
+}
+
+/* Light mode adjustments - REDUCED OPACITY */
+body.light-mode .bubble {
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(0, 131, 143, 0.12), 
+        rgba(0, 131, 143, 0.05)); /* More subtle in light mode */
+    border: 1px solid rgba(0, 131, 143, 0.2);
+    box-shadow: 0 0 12px rgba(0, 131, 143, 0.08);
+}
+
+body.light-mode .bubble.type1 {
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(0, 131, 143, 0.15), 
+        rgba(0, 131, 143, 0.06));
+    border: 1px solid rgba(0, 131, 143, 0.25);
+}
+
+body.light-mode .bubble.type2 {
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(78, 205, 196, 0.18), 
+        rgba(78, 205, 196, 0.07));
+    border: 1px solid rgba(78, 205, 196, 0.25);
+}
+
+body.light-mode .bubble.type3 {
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(100, 100, 100, 0.12), 
+        rgba(100, 100, 100, 0.04));
+    border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+/* Updated floating animation - more subtle movement */
+@keyframes bubbleFloat {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.3; /* Lower base opacity */
+    }
+    25% { 
+        transform: translateY(-8px) translateX(5px) scale(1.02); /* Smaller movement */
+        opacity: 0.5;
+    }
+    50% { 
+        transform: translateY(-4px) translateX(-8px) scale(0.98); /* Smaller movement */
+        opacity: 0.4;
+    }
+    75% { 
+        transform: translateY(-12px) translateX(3px) scale(1.01); /* Smaller movement */
+        opacity: 0.45;
+    }
+}
+/* --- Dark Mode Toggle --- */
+.dark-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(var(--accent-primary-rgb), 0.3);
+}
+
+.dark-toggle:hover {
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 6px 20px rgba(var(--accent-primary-rgb), 0.4);
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-teal)); /* Updated gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-item .nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.nav-item .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: var(--accent-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-item .nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-item .nav-link:hover {
+    color: var(--accent-primary);
+    transform: translateY(-3px);
+}
+
+.nav-item .nav-link.active {
+    color: var(--accent-primary);
+    font-weight: 700;
+}
+
+.nav-item .nav-link.active::after {
+    width: 100%;
+    background: var(--accent-primary);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.mobile-menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 250px;
+    height: 100%;
+    background: var(--bg-dark-secondary);
+    padding-top: 80px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 999;
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-menu .nav-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu .nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+}
+
+.mobile-menu .nav-link:hover {
+    color: var(--accent-primary);
+}
+
+/* --- Horizontal Scroll Wrapper (GSAP controlled) --- */
+.horizontal-scroll-wrapper {
+    display: flex;
+    width: fit-content;
+    height: 100vh;
+    padding-top: 80px;
+}
+
+/* --- Service Section Styles --- */
+.service-section {
+    flex: 0 0 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 5%;
+    position: relative;
+    z-index:2;
+    /* Removed overflow: hidden; to allow image overflow for visual effect, if desired.
+       If clipping is needed for specific designs, add it back locally as needed. */
+    transition: background-color 0.5s ease;
+    box-sizing: border-box;
+}
+
+.service-number {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) translateX(20%);
+    font-size: clamp(10rem, 25vw, 20rem);
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.08); /* Updated to white for better visibility on dark backgrounds */
+    line-height: 1;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+.service-content-left {
+    flex: 0 0 45%;
+    max-width: 700px;
+    text-align: left;
+    z-index: 1;
+    padding-right: 20px;
+}
+
+.service-tags {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.service-tags .tag {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-teal)); /* Updated gradient */
+    color: var(--text-light);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+body.light-mode .service-tags .tag {
+    background: rgba(var(--accent-primary-rgb), 0.2);
+    color: #1a1a1a;
+}
+
+.service-title {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--text-light);
+}
+
+.read-more-btn {
+    background: none;
+    border: 2px solid var(--accent-primary);
+    color: var(--text-light);
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.read-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #111, #333); /* Changed to black gradient */
+    transition: left 0.3s ease-out;
+    z-index: -1;
+}
+.read-more-btn:hover::before {
+    left: 0;
+}
+.read-more-btn:hover {
+    color: var(--text-light);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Adjusted box shadow */
+}
+
+.service-media-right {
+    flex: 0 0 50%;
+    /* Adjusted height to allow more space for content without cropping.
+       Consider aspect ratio of your actual images. */
+    height: 85vh; /* Increased height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px; /* Add padding to ensure image is not against the edge */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+/* New CSS for the blue glow */
+.service-media-right::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Adjust size of the glow relative to the image container */
+    height: 90%; /* Adjust size of the glow relative to the image container */
+    background: radial-gradient(circle at center, rgba(var(--accent-primary-rgb), 0.3) 0%, transparent 70%); /* Blue glow */
+    filter: blur(40px); /* Adjust blur for desired softness */
+    z-index: -1; /* Position behind the image but above the background */
+    border-radius: 50%; /* Make it a circular glow */
+    opacity: 0.7; /* Adjust opacity for subtle effect */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.service-media-right:hover::before {
+    opacity: 1; /* Make glow more intense on hover */
+    transform: translate(-50%, -50%) scale(1.05); /* Slightly enlarge on hover */
+}
+
+
+.service-media-right img, .service-media-right video {
+    max-width: 100%; /* Ensure image doesn't overflow its container */
+    max-height: 100%; /* Ensure image doesn't overflow its container */
+    object-fit: contain; /* Use 'contain' to ensure the entire image is visible within its bounds */
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+    z-index: 1; /* Ensure image is above the glow */
+    position: relative; /* Needed for z-index to work against pseudo-element */
+}
+.service-media-right img:hover, .service-media-right video:hover {
+    filter: brightness(1);
+}
+
+/* Fixed Bottom Navigation */
+.fixed-bottom-nav {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.scroll-dots {
+    display: flex;
+    gap: 10px;
+}
+.scroll-dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.3); /* Updated for better visibility */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.scroll-dot.active {
+    background-color: var(--accent-primary);
+    transform: scale(1.2);
+}
+
+/* --- Modal for Service Details --- */
+.service-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1002;
+}
+.service-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a); /* Updated to match index.html */
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    position: relative;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: modalPopIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.service-modal.active .modal-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.modal-close-btn:hover {
+    color: var(--accent-primary);
+}
+
+/* Animations */
+@keyframes fadePulse {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.15; }
+    100% { opacity: 0.1; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes modalPopIn {
+    0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .service-section {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        padding-top: 100px;
+    }
+
+    .service-content-left {
+        flex: 0 0 100%;
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .service-media-right {
+        flex: 0 0 80%;
+        height: 50vh; /* Reverted to 50vh for smaller screens to save vertical space */
+        padding: 0; /* Remove padding for smaller screens if it pushes image too much */
+    }
+    /* Adjust glow for smaller screens */
+    .service-media-right::before {
+        filter: blur(25px); /* Less blur on smaller screens */
+        width: 100%;
+        height: 100%;
+    }
+    .service-media-right img, .service-media-right video {
+        object-fit: contain; /* Ensure they scale down properly */
+    }
+
+    .service-number {
+        font-size: clamp(8rem, 20vw, 15rem);
+        transform: translateY(-50%) translateX(0);
+        left: 50%;
+    }
+
+    .horizontal-scroll-wrapper {
+        height: auto;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .dark-toggle {
+        top: 15px;
+        right: 15px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-title {
+        font-size: 2.5rem;
+    }
+    .read-more-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    .modal-content {
+        padding: 25px;
+    }
+}
+
+/* Additional animations from index.html for consistency */
+@keyframes logoGlow {
+    0% { text-shadow: 0 0 5px var(--accent-primary); }
+    100% { text-shadow: 0 0 15px var(--accent-primary), 0 0 25px rgba(var(--accent-primary-rgb), 0.5); }
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 15px rgba(var(--accent-primary-rgb),0.5); }
+    50% { text-shadow: 0 0 12px rgba(255,255,255,1), 0 0 20px rgba(var(--accent-primary-rgb),0.7); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
 </head>
 <body>
     <div class="geometric-overlay"></div>
     <div class="page-particles"></div>
-
-    <button class="dark-toggle" id="darkModeToggle">
+    <div class="bubble-background"></div> <button class="dark-toggle" id="darkModeToggle">
         <i class="fas fa-moon"></i>
     </button>
 
@@ -674,6 +758,7 @@
                 <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
                 <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
                 <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                 <li class="nav-item"><a href="testimonials-pricing.html" class="nav-link">Testimonials</a></li>
                 <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -714,7 +799,7 @@
             </div>
         </section>
 
-        <section class="service-section" style="background-color: var(--section-bg-coral);">
+        <section class="service-section" style="background-color: var(--section-bg-primary);">
             <div class="service-number rellax" data-rellax-speed="-2">02</div>
             <div class="service-content-left">
                 <div class="service-tags">
@@ -752,7 +837,7 @@
             </div>
         </section>
 
-        <section class="service-section" style="background-color: var(--section-bg-purple);">
+        <section class="service-section" style="background-color: var(--section-bg-primary);">
             <div class="service-number rellax" data-rellax-speed="-2">04</div>
             <div class="service-content-left">
                 <div class="service-tags">
@@ -808,8 +893,6 @@
             });
 
             // Initialize Rellax for parallax
-            // Removed Rellax initialization for .rellax class on images.
-            // Keeping it for service numbers as requested (if desired for that element).
             if (window.innerWidth > 768) {
                 new Rellax('.rellax', {
                     speed: -2,
@@ -870,9 +953,9 @@
                         // Change body background color based on section
                         const sectionColors = [
                             'var(--section-bg-dark)',
-                            'var(--section-bg-coral)',
+                            'var(--section-bg-primary)', /* Updated to use --accent-primary */
                             'var(--section-bg-secondary-dark)',
-                            'var(--section-bg-purple)'
+                            'var(--section-bg-primary)'  /* Updated to use --accent-primary */
                         ];
                         document.body.style.backgroundColor = sectionColors[currentSectionIndex];
                     }
@@ -917,7 +1000,7 @@
                         "Backend Development & API Integration",
                         "Website Maintenance & Support"
                     ],
-                    image: "https://via.placeholder.com/800x500/ff6b6b/ffffff?text=Web+Dev+Details"
+                    image: "https://via.placeholder.com/800x500/00838F/ffffff?text=Web+Dev+Details" /* Updated placeholder color */
                 },
                 digitalMarketing: {
                     title: "Digital Marketing & SEO",
@@ -943,7 +1026,7 @@
                         "Corporate Stationery Design",
                         "Brand Revitalization"
                     ],
-                    image: "https://via.placeholder.com/800x500/7b68ee/ffffff?text=Branding+Details"
+                    image: "https://via.placeholder.com/800x500/00838F/ffffff?text=Branding+Details" /* Updated placeholder color */
                 },
                 mobileApp: {
                     title: "Mobile App Development",
@@ -956,7 +1039,7 @@
                         "Backend Integration & APIs",
                         "App Store Optimization (ASO)"
                     ],
-                    image: "https://via.placeholder.com/800x500/00ffff/ffffff?text=Mobile+App+Details"
+                    image: "https://via.placeholder.com/800x500/00838F/ffffff?text=Mobile+App+Details" /* Updated placeholder color */
                 }
             };
 
@@ -1025,7 +1108,50 @@
             }
             // Periodically add new particles
             setInterval(createParticle, 2000); // Add a new particle every 2 seconds
-        });
+
+            // Bubble background animation
+            // Static bubble background
+const bubbleBackground = document.querySelector('.bubble-background');
+
+function createStaticBubbles() {
+    // Clear any existing bubbles
+    bubbleBackground.innerHTML = '';
+    
+    // Create fewer, smaller bubbles
+    const bubbleCount = 12; // Reduced count
+    
+    for (let i = 0; i < bubbleCount; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        
+        // Add random bubble types for variety
+        const bubbleTypes = ['type1', 'type2', 'type3'];
+        const randomType = bubbleTypes[Math.floor(Math.random() * bubbleTypes.length)];
+        bubble.classList.add(randomType);
+        
+        // Much smaller size between 20px and 80px (much smaller for subtlety)
+        const size = Math.random() * 60 + 20;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        
+        // Random position across the viewport (with more margin to avoid overlap)
+        bubble.style.left = `${Math.random() * 90 + 5}vw`; // 5% to 95% of viewport width
+        bubble.style.top = `${Math.random() * 90 + 5}vh`; // 5% to 95% of viewport height
+        
+        // Add random animation duration for variety (slower for subtlety)
+        bubble.style.animationDuration = `${Math.random() * 15 + 20}s`; // 20-35 seconds
+        
+        bubbleBackground.appendChild(bubble);
+    }
+}
+// Create static bubbles on page load
+if (bubbleBackground) {
+    createStaticBubbles();
+    
+    // Recreate bubbles on window resize to maintain proper distribution
+    window.addEventListener('resize', createStaticBubbles);
+}
+    });
     </script>
 </body>
 </html>

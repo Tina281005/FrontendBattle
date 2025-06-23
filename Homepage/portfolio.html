@@ -11,28 +11,28 @@
     <style>
         /* CSS Variables for Color Scheme (from index.html and original portfolio.html) */
         :root {
-            --bg-dark-primary: #0a0a0a;
-            --bg-dark-secondary: #1a1a1a; /* Using a darker shade consistent with index.html */
-            --bg-gradient-start: #111111; /* From index.html */
-            --bg-gradient-end: #0a0a0a;
+                --bg-dark-primary: #0a0a0a;
+                --bg-dark-secondary: #1a1a1a;
+                --bg-gradient-start: #111111;
+                --bg-gradient-end: #0a0a0a;
 
-            --accent-coral: #ff6b6b; /* Vibrant Red/Pink */
-            --accent-coral-rgb: 255, 107, 107;
+                --accent-coral: #001122;
+                --accent-coral-rgb: 44, 62, 122;
 
-            --accent-teal: #4ecdc4;
-            --accent-teal-rgb: 78, 205, 196;
+                --accent-teal: #4ecdc4;
+                --accent-teal-rgb: 78, 205, 196;
 
-            --accent-purple: #7b68ee; /* From original portfolio, can be used if desired */
-            --accent-purple-rgb: 123, 104, 238;
+                --accent-purple: #7b68ee;
+                --accent-purple-rgb: 123, 104, 238;
 
-            --accent-neon-blue: #00ffff; /* From original portfolio, can be used if desired */
-            --accent-neon-blue-rgb: 0, 255, 255;
+                --accent-neon-blue: #00ffff;
+                --accent-neon-blue-rgb: 0, 255, 255;
 
-            --accent-neon-pink: #e040fb; /* From original portfolio, can be used if desired */
-            --accent-neon-pink-rgb: 224, 64, 251;
+                --accent-neon-pink: #e040fb;
+                --accent-neon-pink-rgb: 224, 64, 251;
 
-            --text-light: #ffffff;
-            --text-muted: #cccccc;
+                --text-light: #ffffff;
+                --text-muted: #cccccc;
         }
 
         /* General Resets and Base Styles */
@@ -75,8 +75,9 @@
             color: rgba(0, 0, 0, 0.08);
         }
         body.light-mode .project-tags .tag {
-            background: rgba(var(--accent-coral-rgb), 0.2);
-            color: #1a1a1a;
+                background: var(--accent-button-color);
+                color: white;
+                box-shadow: 0 2px 8px rgba(var(--accent-button-rgb), 0.3);
         }
         body.light-mode .modal-content {
             background: #f8f9fa;
@@ -225,7 +226,7 @@
         }
         .project-tags .tag {
             display: inline-block;
-            background: var(--accent-neon-blue);
+            background: var(--accent-button-color); /* Using the chosen button color */
             color: var(--text-light);
             padding: 5px 12px;
             border-radius: 20px;
@@ -233,7 +234,14 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            opacity: 0.8;
+            opacity: 1;
+            box-shadow: 0 2px 8px rgba(var(--accent-button-rgb), 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .project-tags .tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--accent-button-rgb), 0.6);
         }
 
         .project-title {
@@ -565,6 +573,132 @@
             0%, 100% { opacity: 0.1; }
             50% { opacity: 0.25; }
         }
+
+        /* --- Navigation Bar --- */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+                font-weight: bold;
+                background: linear-gradient(45deg, var(--accent-primary), var(--accent-teal)); /* Updated gradient */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .nav-menu {
+                display: flex;
+                list-style: none;
+                gap: 2.5rem;
+            }
+
+            .nav-item .nav-link {
+                color: var(--text-light);
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: 500;
+                transition: color 0.3s ease, transform 0.3s ease;
+                position: relative;
+            }
+
+            .nav-item .nav-link::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -5px;
+                width: 0;
+                height: 2px;
+                background: var(--accent-primary);
+                transition: width 0.3s ease;
+            }
+
+            .nav-item .nav-link:hover::after {
+                width: 100%;
+            }
+
+            .nav-item .nav-link:hover {
+                color: var(--accent-primary);
+                transform: translateY(-3px);
+            }
+
+            .nav-item .nav-link.active {
+                color: var(--accent-primary);
+                font-weight: 700;
+            }
+
+            .nav-item .nav-link.active::after {
+                width: 100%;
+                background: var(--accent-primary);
+            }
+
+            .mobile-menu-toggle {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+
+            .mobile-menu-toggle .bar {
+                width: 25px;
+                height: 3px;
+                background-color: var(--text-light);
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 250px;
+                height: 100%;
+                background: var(--bg-dark-secondary);
+                padding-top: 80px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+                transition: right 0.3s ease;
+                z-index: 999;
+            }
+
+            .mobile-menu.active {
+                right: 0;
+            }
+
+            .mobile-menu .nav-item {
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .mobile-menu .nav-link {
+                color: var(--text-light);
+                text-decoration: none;
+                font-size: 1.1rem;
+                display: block;
+            }
+
+            .mobile-menu .nav-link:hover {
+                color: var(--accent-primary);
+            }
+
+
     </style>
 </head>
 <body>
@@ -584,6 +718,25 @@
         <div class="scroll-dots" id="scrollDots">
             </div>
     </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">DigitalCraft</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+                <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                 <li class="nav-item"><a href="testimonials-pricing.html" class="nav-link">Testimonials</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
     <div class="project-modal" id="projectModal">
         <div class="modal-content">
