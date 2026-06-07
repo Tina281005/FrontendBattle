@@ -1,8 +1,8 @@
-# 🌐 Digital Design & Web Development Agency Site
+# Digital Design & Web Development Agency Site
 
-🎯 A responsive and visually appealing website built for a frontend competition. Focused on replicating provided designs while adding creative enhancements and user experience features.
+A responsive and visually appealing website built for a frontend competition. Focused on replicating provided designs while adding creative enhancements and user experience features.
 
-## 🚀 Tech Stack
+## Tech Stack
 - HTML5
 - CSS3
 - JavaScript (ES6)
@@ -10,7 +10,7 @@
 - AOS.js – scroll animations
 - Chart.js – graphs and metrics
 
-## 🌟 Features
+## Features
 - Responsive design
 - Scroll-triggered animations
 - Interactive carousel
